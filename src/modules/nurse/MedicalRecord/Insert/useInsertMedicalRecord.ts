@@ -117,10 +117,32 @@ export const useInsertMedicalRecord = () => {
             cantidadAbortos: tuvoEmbarazos ? cantidadAbortos : null,
             huboComplicacionesParto: tuvoEmbarazos ? huboComplicaciones : null,
             especifiqueComplicaciones: tuvoEmbarazos && huboComplicaciones && especifiqueComplicaciones.trim() !== "" ? especifiqueComplicaciones : null,
-            alergias: alergiasList,
-            enfermedadeCronicas: antecedentesPatologicosList,
-            cirugiasPrevias: antecedentesQuirurgicosList,
-            drogas: drogasList
+            alergias: alergiasList.map(a => ({
+                idAlergia: a.id,
+                alergeno: a.alergeno,
+                reaccion: a.reaccion,
+                observaciones: a.observaciones
+            })),
+            enfermedadeCronicas: antecedentesPatologicosList.map(p => ({
+                idPatologia: p.id,
+                nombreEnfermedad: p.nombre,
+                fechaDiagnostico: p.fechaDiagnostico ? p.fechaDiagnostico : null,
+                estaEnTratamiento: p.enTratamiento,
+                observaciones: p.observaciones
+            })),
+            cirugiasPrevias: antecedentesQuirurgicosList.map(q => ({
+                idOperacion: q.id,
+                nombreOperacion: q.nombre,
+                fechaOperacion: q.fecha ? q.fecha : null,
+                huboComplicaciones: q.huboComplicaciones,
+                observaciones: q.observaciones
+            })),
+            drogas: drogasList.map(d => ({
+                idDrogas: d.id,
+                nombreDroga: d.nombreDroga,
+                frecuencia: d.frecuencia,
+                observaciones: d.observaciones
+            }))
         };
 
         try {
