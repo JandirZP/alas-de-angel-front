@@ -122,6 +122,7 @@ export const DashboardPatient = () => {
               paciente={paciente}
               // Cuando la cita se guarda, regresamos automáticamente al Home
               onCitaAgendada={() => setActivatedView("home")}
+              onCancel={() => setActivatedView("home")}
             />
           )}
 
