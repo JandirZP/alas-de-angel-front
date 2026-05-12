@@ -105,3 +105,23 @@ El sistema implementa un flujo de autenticación seguro basado en **JSON Web Tok
 - **Inicio de Sesión**: Los usuarios deben iniciar sesión para obtener su token de acceso.
 - **Protección de Rutas**: Se implementan protectores de ruta (guards) en el frontend; las vistas privadas y dashboards solo son accesibles con un token válido.
 - **Consumo de APIs**: El token JWT se almacena de forma segura en el cliente y se incluye automáticamente en las cabeceras (`Authorization: Bearer <token>`) de las peticiones HTTP que requieren permisos.
+
+## Flujo de la Aplicación
+
+El sistema está diseñado para simular un entorno hospitalario real, dividiendo las responsabilidades por roles:
+
+1. **Paciente:** Puede crear su cuenta, editar su perfil y agendar citas médicas. Desde su panel, visualiza el historial de sus tratamientos recientes.
+2. **Enfermera:** Es la encargada de recibir a los pacientes con cita programada y realizar el **Triaje** inicial. También es la responsable de crear la historia clínica en caso de que el paciente aún no cuente con una.
+3. **Médico:** Recibe al paciente con la historia clínica y el triaje ya completados. Realiza el diagnóstico, receta el tratamiento y añade las recomendaciones al sistema.
+4. **Administrador:** Tiene el control global del sistema. Puede gestionar usuarios (médicos, enfermeras, etc.), configurar especialidades médicas y supervisar el funcionamiento general de la plataforma. (Aún en desarrollo)
+
+## Credenciales de Prueba (Demo)
+
+Para facilitar la evaluación del proyecto, la base de datos se inicializa con usuarios de prueba. Puedes usar las siguientes credenciales (Contraseña para todos: `123456`):
+
+| Rol | Correo | Contraseña |
+| :--- | :--- | :--- |
+| **Administrador** | admin@clinica.com | 123456 |
+| **Médico** | medico1@clinica.com | 123456 |
+| **Enfermera** | enfermera1@clinica.com | 123456 |
+| **Paciente** | cmendoza@clinica.com | 123456 |
