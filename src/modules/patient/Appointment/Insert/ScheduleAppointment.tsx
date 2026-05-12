@@ -12,7 +12,7 @@ export const ScheduleAppointment = ({ paciente, onCitaAgendada }: Props) => {
   // 1. Extraemos TODO lo que el hook calculó por nosotros 
   // ¡Mira lo limpio que queda el componente ahora!
   const {
-    especialidades, medicos, horariosDisponibles, horasOcupadas, guardando,
+    especialidades, medicos, horariosDisponibles, horasOcupadas, guardando, isFetchingMedicos,
     hoyFormatoLocal, horaActualNumerica,
     idEspecialidad, setIdEspecialidad,
     idMedico, setIdMedico,
@@ -57,12 +57,13 @@ export const ScheduleAppointment = ({ paciente, onCitaAgendada }: Props) => {
             name="medicoId"
             value={idMedico}
             onChange={(e) => setIdMedico(e.target.value)}
-            disabled={!idEspecialidad || medicos.length === 0}
+            disabled={!idEspecialidad || (medicos.length === 0 && !isFetchingMedicos)}
             required
             className="mt-1 w-full rounded-xl border border-emerald-900 bg-blue-100 focus:bg-blue-50 focus:outline-none focus:border-3 text-blue-800 px-2 py-1 disabled:bg-gray-300 disabled:text-gray-500"
           >
             <option value="">
               {!idEspecialidad ? "Primero seleccione especialidad" :
+                isFetchingMedicos ? "Consultando..." :
                 medicos.length === 0 ? "No hay médicos para esta especialidad" : "Seleccione médico"}
             </option>
             {medicos.map((medico) => (

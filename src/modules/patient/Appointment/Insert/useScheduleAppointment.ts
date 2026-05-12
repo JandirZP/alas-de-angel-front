@@ -24,6 +24,7 @@ export const useScheduleAppointment = ({ paciente, onCitaAgendada }: UseSchedule
     const [motivo, setMotivo] = useState("");
 
     const [guardando, setGuardando] = useState(false);
+    const [isFetchingMedicos, setIsFetchingMedicos] = useState(false);
     const [horasOcupadas, setHorasOcupadas] = useState<string[]>([]);
 
     const horariosDisponibles = [
@@ -52,15 +53,18 @@ export const useScheduleAppointment = ({ paciente, onCitaAgendada }: UseSchedule
     // Efecto 2: Si el usuario escoge una especialidad, buscamos sus médicos
     useEffect(() => {
         if (idEspecialidad !== "") {
+            setIsFetchingMedicos(true);
             usuarioService.getMedicosPorEspecialidad(Number(idEspecialidad))
                 .then((data) => {
                     setMedicos(data);
                     setIdMedico(""); // Reseteamos el médico al cambiar especialidad
                 })
-                .catch((err) => console.error("Error cargando médicos:", err));
+                .catch((err) => console.error("Error cargando médicos:", err))
+                .finally(() => setIsFetchingMedicos(false));
         } else {
             setMedicos([]);
             setIdMedico("");
+            setIsFetchingMedicos(false);
         }
     }, [idEspecialidad]);
 
@@ -136,6 +140,7 @@ export const useScheduleAppointment = ({ paciente, onCitaAgendada }: UseSchedule
         horariosDisponibles,
         horasOcupadas,
         guardando,
+        isFetchingMedicos,
         hoyFormatoLocal,
         horaActualNumerica,
         // Variables de formulario (los value)
