@@ -97,12 +97,20 @@ export const MedicalRecord = () => {
         <div className="p-4 md:p-6 max-w-7xl mx-auto mt-2 space-y-6">
 
             {/* Encabezado Principal */}
-            <div>
-                <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                    <i className="fa-solid fa-folder-medical text-emerald-600"></i>
-                    Historia Clínica
-                </h1>
-                <p className="text-slate-500 mt-1">Gestión y listado de pacientes con registros clínicos.</p>
+            <div className="flex justify-between items-start">
+                <div>
+                    <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
+                        <i className="fa-solid fa-folder-medical text-emerald-600"></i>
+                        Historia Clínica
+                    </h1>
+                    <p className="text-slate-500 mt-1">Gestión y listado de pacientes con registros clínicos.</p>
+                </div>
+                <button 
+                    onClick={() => navigate('/DashboardNurse', { state: { view: 'home' } })} 
+                    className="bg-slate-500 text-white px-4 py-2 rounded-lg hover:bg-slate-600 font-semibold transition-colors flex items-center gap-2"
+                >
+                    <i className="fa-solid fa-arrow-left"></i> Cancelar
+                </button>
             </div>
 
             {/* Contenedor Principal (Barra de herramientas + Tabla) */}

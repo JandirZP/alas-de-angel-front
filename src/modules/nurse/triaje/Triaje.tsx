@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { Cita, Usuario } from "../../../types/models";
 import { Modal } from "../../../layouts/Modals";
 import { toast } from "sonner";
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const Triaje = ({ citas, enfermera, onBuscarCitasPorDocumento, onLimpiarCitas, onTriajeGuardado }: Props) => {
+    const navigate = useNavigate();
 
     // 1. Conseguimos la fecha actual (solo para comparar día/mes/año)
     const fechaActual = new Date();
@@ -140,8 +142,14 @@ export const Triaje = ({ citas, enfermera, onBuscarCitasPorDocumento, onLimpiarC
     return (
         <>
             <div className="p-6 max-w-7xl mx-auto mt-6 flex-1 overflow-auto">
-                <div className="flex justify-center items-center mb-6">
+                <div className="flex justify-between items-center mb-6">
                     <h1 className="text-3xl font-bold text-blue-900">Triaje</h1>
+                    <button 
+                        onClick={() => navigate('/DashboardNurse', { state: { view: 'home' } })} 
+                        className="bg-slate-500 text-white px-4 py-2 rounded-lg hover:bg-slate-600 font-semibold transition-colors flex items-center gap-2"
+                    >
+                        <i className="fa-solid fa-arrow-left"></i> Cancelar
+                    </button>
                 </div>
 
                 {/* Buscar Citas por numero de documento */}
