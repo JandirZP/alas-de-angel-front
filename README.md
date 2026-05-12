@@ -33,56 +33,51 @@ El proyecto está construido utilizando las siguientes tecnologías:
 **Base de Datos:**
 - [Supabase](https://supabase.com/) - Alternativa Open Source para la base de datos relacional y gestión de almacenamiento.
 
-## 🚀 Instalación y Despliegue Local
+## Repositorios del Proyecto
 
-Sigue estos pasos para levantar el entorno de desarrollo en tu máquina local.
+El proyecto está dividido en dos repositorios para mantener una separación clara entre el cliente y el servidor:
+
+- **Frontend (React + Vite):** [alas-de-angel-front](https://github.com/JandirZP/alas-de-angel-front) *(Este repositorio)*
+- **Backend (Spring Boot):** [alas-de-angel-back](https://github.com/JandirZP/alas-de-angel-back)
+
+## Entorno de Producción (Despliegue)
+
+La aplicación se encuentra desplegada y accesible en la nube a través de los siguientes servicios:
+
+- **Frontend:** Alojado en **Netlify**, garantizando una entrega rápida y continua.
+- **Backend:** Alojado en **Render**, sirviendo la API REST y manejando la lógica del sistema.
+- **Base de Datos:** Alojada en **Supabase**.
+
+## Instalación y Configuración Local (Frontend)
+
+Sigue estos pasos para levantar el entorno de desarrollo del frontend en tu máquina local.
 
 ### Prerrequisitos
-- [Node.js](https://nodejs.org/) (versión recomendada)
-- [Java JDK 17+](https://www.oracle.com/java/technologies/downloads/)
-- [Maven](https://maven.apache.org/)
-- Cuenta en Supabase con las credenciales de la base de datos.
+- [Node.js](https://nodejs.org/) (versión LTS recomendada).
+- Tener el backend corriendo localmente o configurar las variables de entorno para apuntar al backend en Render.
 
 ### Pasos
 
-1. **Clonar el repositorio:**
+1. **Clonar este repositorio:**
    ```bash
-   git clone [https://github.com/TuUsuario/alas-de-angel.git](https://github.com/TuUsuario/alas-de-angel.git)
-
-2. **Configurar y levantar el Backend (Spring Boot):**
-
-   Navega a la carpeta del backend.
-
-   ```bash
-   cd gestion-pacientes-back
+   git clone https://github.com/JandirZP/alas-de-angel-front.git
    ```
 
-   Configura las variables de entorno en el archivo application.properties o application.yml con tus credenciales de Supabase.
-
-   Ejecuta el proyecto:
-
+2. **Ingresar al directorio:**
+   *(Si el nombre de la carpeta local es diferente, ajusta el comando).*
    ```bash
-   ./mvnw spring-boot:run
+   cd alas-de-angel-front
    ```
 
-3. **Configurar y levantar el Frontend (React):**
-
-   Navega a la carpeta del frontend.
-
-   ```bash
-   cd gestion-pacientes-front
-   ```
-
-   Instala las dependencias:
-
+3. **Instalar las dependencias:**
    ```bash
    npm install
    ```
 
-   Crea un archivo .env en la raíz del frontend y añade las variables de entorno necesarias (URLs de la API, etc.).
+4. **Configurar Variables de Entorno:**
+   Crea un archivo `.env` en la raíz del proyecto y añade las variables necesarias, como la URL base de tu backend (`VITE_API_URL`, etc.).
 
-   Ejecuta el proyecto:
-
+5. **Iniciar el servidor de desarrollo:**
    ```bash
    npm run dev
    ```
